@@ -15,3 +15,7 @@ Start documentation server on http://localhost:3000 for `<api-url>`:
 ```bash
 mono-doc <api-url>
 ```
+
+## Credits
+
+Logo created by Frederick Allen from the Noun Project.
