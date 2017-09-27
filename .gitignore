@@ -11,3 +11,6 @@ coverage
 # Editors
 .vscode
 .idea
+
+# Nuxt
+.nuxt
