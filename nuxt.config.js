@@ -55,7 +55,7 @@ module.exports = {
     plugins: [
     ],
     babel: {
-      plugins: ['lodash']
+      // plugins: ['lodash']
     },
     /*
     ** Run ESLINT on save
