@@ -1,22 +1,17 @@
-# mono-doc
+<h1 align="center"><img src="https://user-images.githubusercontent.com/904724/30934972-81afdcea-a3cf-11e7-9bda-000c1b1832c0.png" width="350" alt="Mono Doc"/></h1>
 
-> Mono Doc App
+> REST API Documentation Generator for [Mono](https://github.com/terrajs/mono)
 
-## Build Setup
+## Installation
 
 ``` bash
-# install dependencies
-$ npm install # Or yarn install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
+npm install -g mono-doc
 ```
 
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
+## Usage
+
+Start documentation server on http://localhost:3000 for `<api-url>`:
+
+```bash
+mono-doc <api-url>
+```
