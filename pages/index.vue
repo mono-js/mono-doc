@@ -12,7 +12,7 @@
         <a href="" @click.prevent="language = 'javascript'" :class="{ active: language === 'javascript' }">javascript</a>
       </div>
       <div class="search">
-        <input type="text" placeholder="Search" autofocus>
+        <input type="text" placeholder="Search" v-model="search" autofocus>
       </div>
       <div id="toc" class="toc-list-h1">
         <li v-for="(routes, name) in processedRoutes" :key="name">
@@ -41,7 +41,7 @@
       <div class="dark-box">
         <div class="lang-selector">
           <a href="" @click.prevent="language = 'shell'" :class="{ active: language === 'shell' }">shell</a>
-          <!-- <a href="" @click.prevent="language = 'javascript'" :class="{ active: language === 'javascript' }">javascript</a> -->
+          <a href="" @click.prevent="language = 'javascript'" :class="{ active: language === 'javascript' }">javascript</a>
         </div>
       </div>
     </div>
@@ -55,6 +55,7 @@ import routes from '../components/routes'
 export default {
   data() {
     return {
+      search: '',
       language: 'shell',
       menuOpen: false
     }
@@ -75,7 +76,7 @@ export default {
   },
   computed: {
     processedRoutes() {
-      return _.groupBy(_.map(this.routes, (route) => {
+      const routes = _.map(this.routes, (route) => {
         const paths = route.path.split('/').slice(1)
         const bodyParams = route.validate && route.validate.body ? _(route.validate.body.properties).mapValues((value, key) => {
           const required = !!route.validate.body.required.indexOf(key) !== -1
@@ -99,7 +100,18 @@ export default {
           resources,
           ..._.pick(route.documentation, 'name', 'description')
         }
-      }), (route) => _.take(route.resources, 2).join(' / '))
+      })
+
+      const filteredRoutes = _.filter(routes, (route) => {
+        if (!this.search.length) return route
+
+        const search = this.search.toLowerCase().split(' ')
+        const names = route.name ? route.name.split(' ') : route.paths
+
+        return _.intersection(names, search).length
+      })
+
+      return _.groupBy(filteredRoutes && filteredRoutes.length ? filteredRoutes : routes, (route) => _.take(route.resources, 2).join(' / '))
     }
   },
   components: {
