@@ -2,7 +2,7 @@
 ////////////////////
 $nav-bg: #2E3336 !default;
 $examples-bg: #2E3336 !default;
-$code-bg: #1E2224 !default;
+$code-bg: #282a36 !default;
 $code-annotation-bg: #191D1F !default;
 $nav-subitem-bg: #1E2224 !default;
 $nav-active-bg: #0F75D4 !default;
@@ -55,13 +55,6 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
   @extend %default-font;
   font-weight: bold;
 }
-
-%code-font {
-  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
-  font-size: 12px;
-  line-height: 1.5;
-}
-
 
 // OTHER
 ////////////////////

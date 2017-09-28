@@ -1,9 +1,10 @@
 <template>
   <div>
-    <pre class="highlight shell tab-shell" v-if="$store.state.language === 'shell'">
-      <code>
-        <span>curl "{{`${url}${route.path}`}}"</span>
-      </code>
+    <pre v-highlightjs v-show="$store.state.language === 'shell'">
+      <code class="shell">curl -X{{route.method}} "{{url}}{{route.path}}" \<br><span v-if="route.session">-H "Authorization: ..."</span></code>
+    </pre>
+    <pre v-highlightjs v-show="$store.state.language === 'javascript'">
+      <code class="javascript">const axios = require('axios')<br><br>await axios.{{route.method.toLowerCase()}}('{{route.path}}')</code>
     </pre>
   </div>
 </template>

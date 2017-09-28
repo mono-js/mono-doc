@@ -208,7 +208,7 @@ html, body {
     border-radius: 0 0 0 5px;
   }
   display: none;
-  position: fixed;
+  position: absolute;
   top: 12px;
   left: 0;
   z-index: 15;
@@ -439,12 +439,11 @@ html, body {
     max-width: 100%;
   }
 
-  code {
+  p > code {
     background-color: rgba(0,0,0,0.05);
     padding: 3px;
     border-radius: 3px;
-    // @extend %break-words;
-    @extend %code-font;
+    word-break: break-all;
   }
 
   pre>code {
@@ -484,19 +483,18 @@ html, body {
 .content {
   pre, blockquote {
     background-color: $code-bg;
-    color: #fff;
 
     margin: 0;
     width: $examples-width;
 
-    float:right;
-    clear:right;
+    float: right;
+    clear: right;
 
     box-sizing: border-box;
 
     @extend %right-col;
 
-    &>p { margin: 0; }
+    // &>p { margin: 0; }
 
     a {
       color: #fff;
@@ -506,10 +504,8 @@ html, body {
   }
 
   pre {
-    @extend %code-font;
-    padding-top: 2em;
-    padding-bottom: 2em;
     padding: 2em $main-padding;
+    margin-bottom: 15px;
   }
 
   blockquote {
@@ -575,14 +571,6 @@ html, body {
   %right-col + %left-col {
     margin-top: $main-padding;
   }
-}
-
-.highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #909090;
-}
-
-.highlight, .highlight .w {
-  background-color: $code-bg;
 }
 
 .text-capitalize {

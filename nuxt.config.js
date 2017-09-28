@@ -31,13 +31,14 @@ module.exports = {
   ** CSS
   */
   css: [
+    'highlight.js/styles/dracula.css',
     '~/assets/main.scss'
   ],
   /*
   ** Plugins
   */
   plugins: [
-    '~/plugins/scrollspy-init',
+    '~/plugins/highlight',
     '~/plugins/scrollspy'
   ],
   /*
