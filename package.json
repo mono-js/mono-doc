@@ -2,7 +2,7 @@
   "name": "@terrajs/mono-doc",
   "version": "0.2.0",
   "bin": {
-    "mono-docs": "./bin/mono-doc.js"
+    "mono-doc": "./bin/mono-doc.js"
   },
   "scripts": {
     "dev": "nuxt",

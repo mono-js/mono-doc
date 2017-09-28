@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const program = require('commander')
 const { Nuxt, Builder } = require('nuxt')
 const config = require('../nuxt.config.js')
