@@ -63,7 +63,7 @@ export default {
     let routes
 
     try {
-      routes = await app.$axios.$get('/routes')
+      routes = await app.$axios.$get('/_routes')
     } catch (e) {
       error({ statusCode: 404, message: 'The url you provided is not a Mono API!' })
     }
