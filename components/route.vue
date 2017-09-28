@@ -3,7 +3,7 @@
     <h2>
       <span v-if="processedRoute.name">{{processedRoute.name}}</span>
       <span v-else class="text-capitalize">{{processedRoute.method}} {{processedRoute.resources.join(' ')}}</span>
-      <span class="caption">
+      <span class="caption" v-if="!processedRoute.name">
         <i>
           (Override this with
           <code>documentation.name</code> key in your route definition)
