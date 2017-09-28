@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const program = require('commander')
+const { join } = require('path')
 const { Nuxt, Builder } = require('nuxt')
 const config = require('../nuxt.config.js')
 const { version } = require('../package')
@@ -12,10 +13,12 @@ program
   .option('-H, --host', 'Host to listen')
   .option('--dev', 'Dev mode')
   .action(function (url, options) {
+    config.rootDir = join(__dirname, '..')
     config.dev = !!options.dev
     config.env.url = url
     config.axios.baseURL = url
     config.axios.browserBaseURL = url
+    config.build.extend = () => {}
 
     const nuxt = new Nuxt(config)
     const builder = new Builder(nuxt)
