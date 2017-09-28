@@ -1,6 +1,6 @@
 <template>
   <div>
-    <pre class="highlight shell tab-shell" v-if="language === 'shell'">
+    <pre class="highlight shell tab-shell" v-if="$store.state.language === 'shell'">
       <code>
         <span>curl "{{`${url}${route.path}`}}"</span>
       </code>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  props: ['route', 'language'],
+  props: ['route'],
   data() {
     return {
       url: process.env.url

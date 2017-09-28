@@ -37,6 +37,8 @@ module.exports = {
   ** Plugins
   */
   plugins: [
+    '~/plugins/scrollspy-init',
+    '~/plugins/scrollspy'
   ],
   /*
   ** Env
@@ -48,6 +50,9 @@ module.exports = {
   */
   serverMiddleware: [
   ],
+  router: {
+    scrollBehavior: () => false
+  },
   /*
   ** Build configuration
   */

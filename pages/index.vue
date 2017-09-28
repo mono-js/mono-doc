@@ -8,25 +8,25 @@
     <div class="toc-wrapper" :class="{ open: menuOpen }" @click.prevent="menuOpen = false">
       <img src="/logo.png" alt="Logo">
       <div class="lang-selector">
-        <a href="" @click.prevent="language = 'shell'" :class="{ active: language === 'shell' }">shell</a>
-        <a href="" @click.prevent="language = 'javascript'" :class="{ active: language === 'javascript' }">javascript</a>
+        <a href="" @click.prevent="$store.dispatch('setLanguage', 'shell')" :class="{ active: $store.state.language === 'shell' }">shell</a>
+        <a href="" @click.prevent="$store.dispatch('setLanguage', 'javascript')" :class="{ active: $store.state.language === 'javascript' }">javascript</a>
       </div>
       <div class="search">
-        <input type="text" placeholder="Search" v-model="search" autofocus>
+        <input type="text" placeholder="Search" v-model="search" @change="updateScroll" autofocus>
       </div>
-      <div id="toc" class="toc-list-h1">
-        <li v-for="(routes, name) in processedRoutes" :key="name">
-          <a :href="`#${name}`" class="toc-h1 toc-link">{{name}}</a>
-          <ul class="toc-list-h2">
-            <li v-for="route in routes" :key="route.path">
-              <a :href="`#${route.resources.join('-')}`" class="toc-h2 toc-link">
+      <ul id="toc" class="toc-list-h1">
+        <li v-for="(routes, name, index) in processedRoutes" :key="name">
+          <a :href="`#${name}`" class="toc-h1 toc-link" :class="{ active: $store.state.scroll === name }" @click="$store.dispatch('updateScroll', name)">{{name.replace('-', ' / ')}}</a>
+          <ul class="toc-list-h2" v-show="$store.state.scroll === name || routes.findIndex((route) => route.key === $store.state.scroll) >= 0">
+            <li v-for="route in routes" :key="route.key">
+              <a :href="`#${route.key}`" class="toc-h2 toc-link" :class="{ active: $store.state.scroll === route.key }" @click="$store.dispatch('updateScroll', route.key)">
                 <span v-if="route.name">{{route.name}}</span>
                 <span v-else class="text-capitalize">{{route.method}} {{route.resources.join(' ')}}</span>
               </a>
             </li>
           </ul>
         </li>
-      </div>
+      </ul>
       <ul class="toc-footer">
         <li>
           <a href="https://github.com/terrajs/mono-doc">Documentation Powered by Mono Doc</a>
@@ -36,12 +36,12 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <routes :processed-routes="processedRoutes" :language="language"></routes>
+        <routes :processed-routes="processedRoutes"></routes>
       </div>
       <div class="dark-box">
         <div class="lang-selector">
-          <a href="" @click.prevent="language = 'shell'" :class="{ active: language === 'shell' }">shell</a>
-          <a href="" @click.prevent="language = 'javascript'" :class="{ active: language === 'javascript' }">javascript</a>
+          <a href="" @click.prevent="$store.dispatch('setLanguage', 'shell')" :class="{ active: $store.state.language === 'shell' }">shell</a>
+          <a href="" @click.prevent="$store.dispatch('setLanguage', 'javascript')" :class="{ active: $store.state.language === 'javascript' }">javascript</a>
         </div>
       </div>
     </div>
@@ -56,7 +56,6 @@ export default {
   data() {
     return {
       search: '',
-      language: 'shell',
       menuOpen: false
     }
   },
@@ -90,6 +89,7 @@ export default {
         const resources = paths.filter((path) => path[0] !== ':')
 
         return {
+          key: `${route.method.toLowerCase()}-${paths.join('-').replace(/:/g, '')}`,
           path: route.path,
           paths,
           method: route.method.toUpperCase(),
@@ -111,7 +111,12 @@ export default {
         return _.intersection(names, search).length
       })
 
-      return _.groupBy(filteredRoutes && filteredRoutes.length ? filteredRoutes : routes, (route) => _.take(route.resources, 2).join(' / '))
+      return _.groupBy(filteredRoutes && filteredRoutes.length ? filteredRoutes : routes, (route) => _.take(route.resources, 2).join('-'))
+    }
+  },
+  methods: {
+    updateScroll() {
+      this.store.dispatch('updateScroll', '')
     }
   },
   components: {

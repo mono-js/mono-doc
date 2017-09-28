@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :id="processedRoute.key">
     <h2>
       <span v-if="processedRoute.name">{{processedRoute.name}}</span>
       <span v-else class="text-capitalize">{{processedRoute.method}} {{processedRoute.resources.join(' ')}}</span>
@@ -11,7 +11,7 @@
       </span>
     </h2>
 
-    <route-highlight :route="processedRoute" :language="language"></route-highlight>
+    <route-highlight :route="processedRoute"></route-highlight>
 
     <p v-if="processedRoute.description">{{processedRoute.description}}</p>
     <p v-else>
@@ -42,7 +42,7 @@ import routeUrlParams from './route-url-params'
 import routeHighlight from './route-highlight'
 
 export default {
-  props: ['processedRoute', 'language'],
+  props: ['processedRoute'],
   components: {
     routeHttpRequest,
     routeBodyParams,

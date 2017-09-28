@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <section v-for="(routes, name) in processedRoutes" :key="name" :id="`#${name.replace(' / ', '-')}`">
-      <h1>{{name}}</h1>
-      <route v-for="route in routes" :key="route.path" :processed-route="route" :language="language"></route>
+  <div v-scroll-spy>
+    <section v-for="(routes, name) in processedRoutes" :key="name" :id="name">
+      <h1>{{name.replace('-', ' / ')}}</h1>
+      <route v-for="route in routes" :key="route.path" :processed-route="route"></route>
     </section>
   </div>
 </template>
@@ -11,7 +11,7 @@
 import route from './route'
 
 export default {
-  props: ['processedRoutes', 'language'],
+  props: ['processedRoutes'],
   components: {
     route
   }
