@@ -1,6 +1,6 @@
 {
   "name": "@terrajs/mono-doc",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "bin": {
     "mono-docs": "./bin/mono-doc.js"
