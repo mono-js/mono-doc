@@ -1,11 +1,16 @@
 {
   "publicPath": "/_nuxt/",
   "all": [
+<<<<<<< HEAD
     "manifest.8311cb05b574a4bd6d3c.js",
+=======
+    "manifest.19f00ca039b24f587a47.js",
+>>>>>>> Add tags
     "img/fontawesome-webfont.912ec66.svg",
     "fonts/fontawesome-webfont.674f50d.eot",
     "fonts/fontawesome-webfont.fee66e7.woff",
     "fonts/fontawesome-webfont.af7ae50.woff2",
+<<<<<<< HEAD
     "pages/index.34816cc4d6224532e95a.js",
     "layouts/default.33404067d74b6c2a0344.js",
     "common.dab304d7bb015a8c3247.js",
@@ -17,16 +22,38 @@
     "common.dab304d7bb015a8c3247.js.map",
     "app.d05253a036b107021b45.js.map",
     "manifest.8311cb05b574a4bd6d3c.js.map",
+=======
+    "pages/index.4dbcdf7882a903cccc1f.js",
+    "layouts/default.33404067d74b6c2a0344.js",
+    "common.dab304d7bb015a8c3247.js",
+    "app.51e0bb977f9c23e84397.js",
+    "fonts/fontawesome-webfont.b06871f.ttf",
+    "LICENSES",
+    "pages/index.4dbcdf7882a903cccc1f.js.map",
+    "layouts/default.33404067d74b6c2a0344.js.map",
+    "common.dab304d7bb015a8c3247.js.map",
+    "app.51e0bb977f9c23e84397.js.map",
+    "manifest.19f00ca039b24f587a47.js.map",
+>>>>>>> Add tags
     "index.spa.html",
     "index.ssr.html"
   ],
   "initial": [
+<<<<<<< HEAD
     "manifest.8311cb05b574a4bd6d3c.js",
     "common.dab304d7bb015a8c3247.js",
     "app.d05253a036b107021b45.js"
   ],
   "async": [
     "pages/index.34816cc4d6224532e95a.js",
+=======
+    "manifest.19f00ca039b24f587a47.js",
+    "common.dab304d7bb015a8c3247.js",
+    "app.51e0bb977f9c23e84397.js"
+  ],
+  "async": [
+    "pages/index.4dbcdf7882a903cccc1f.js",
+>>>>>>> Add tags
     "layouts/default.33404067d74b6c2a0344.js"
   ],
   "modules": {
@@ -556,7 +583,19 @@
       8,
       14
     ],
+<<<<<<< HEAD
     "66a5a972": [
+=======
+    "c1d5c1dc": [
+      5,
+      11
+    ],
+    "2d138856": [
+      5,
+      11
+    ],
+    "c196fa16": [
+>>>>>>> Add tags
       7,
       13,
       1,
@@ -2082,7 +2121,15 @@
       3,
       4
     ],
+<<<<<<< HEAD
     "6da1e93c": [
+=======
+    "1daadd1e": [
+      5,
+      11
+    ],
+    "5b483b03": [
+>>>>>>> Add tags
       7,
       13,
       1,
@@ -2496,7 +2543,15 @@
       3,
       4
     ],
+<<<<<<< HEAD
     "15ebedf0": [
+=======
+    "b1e4e312": [
+      5,
+      11
+    ],
+    "8b59f246": [
+>>>>>>> Add tags
       7,
       13,
       1,
@@ -2894,6 +2949,7 @@
       3,
       4
     ],
+<<<<<<< HEAD
     "5abddcde": [
       7,
       13,
@@ -2905,6 +2961,9 @@
       4
     ],
     "716a2ade": [
+=======
+    "019fa5ea": [
+>>>>>>> Add tags
       7,
       13,
       1,
@@ -3222,7 +3281,21 @@
       3,
       4
     ],
+<<<<<<< HEAD
     "04411298": [
+=======
+    "7bb51c6c": [
+      7,
+      13,
+      1,
+      9,
+      2,
+      2,
+      3,
+      4
+    ],
+    "27f93315": [
+>>>>>>> Add tags
       7,
       13,
       1,
@@ -3626,7 +3699,15 @@
       3,
       4
     ],
+<<<<<<< HEAD
     "02a94c08": [
+=======
+    "6b3018a8": [
+      5,
+      11
+    ],
+    "1ab3c6fb": [
+>>>>>>> Add tags
       7,
       13,
       1,

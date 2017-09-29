@@ -84,6 +84,7 @@ export default {
           queryParams,
           urlParams,
           resources,
+          roles: route.roles,
           ..._.pick(route.documentation, 'name', 'description')
         }
       })

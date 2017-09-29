@@ -27,6 +27,8 @@
     <route-body-params :params="processedRoute.bodyParams" v-if="processedRoute.bodyParams && processedRoute.bodyParams.length"></route-body-params>
     <route-query-params :params="processedRoute.queryParams" v-if="processedRoute.queryParams && processedRoute.queryParams.length"></route-query-params>
 
+    <route-roles :roles="processedRoute.roles" v-if="processedRoute.roles && processedRoute.roles.length"></route-roles>
+
     <aside class="notice" v-if="processedRoute.session">
       <i class="fa fa-info-circle fa-lg"></i>
       You need to be authenticated to perform this request!
@@ -40,6 +42,7 @@ import routeBodyParams from './route-body-params'
 import routeQueryParams from './route-query-params'
 import routeUrlParams from './route-url-params'
 import routeHighlight from './route-highlight'
+import routeRoles from './route-roles'
 
 export default {
   props: ['processedRoute'],
@@ -48,7 +51,8 @@ export default {
     routeBodyParams,
     routeQueryParams,
     routeUrlParams,
-    routeHighlight
+    routeHighlight,
+    routeRoles
   }
 }
 </script>
