@@ -3,7 +3,6 @@ const { Nuxt } = require('nuxt-start')
 const config = require('../../nuxt.config.js')
 
 module.exports = (options) => {
-  console.log(options)
   config.rootDir = join(__dirname, '../..')
   config.dev = false
   if (options.url) {
