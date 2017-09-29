@@ -1,5 +1,4 @@
 module.exports = {
-  mode: 'spa', // TODO: Remove
   /*
   ** Headers of the page
   */
