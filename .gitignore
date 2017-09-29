@@ -13,4 +13,5 @@ coverage
 .idea
 
 # Nuxt
-.nuxt
+.nuxt/*
+!.nuxt/dist/
