@@ -1,32 +1,32 @@
 {
   "publicPath": "/_nuxt/",
   "all": [
-    "manifest.adf0352acffbf72d669c.js",
+    "manifest.4c0dfa504e8f79fff364.js",
     "img/fontawesome-webfont.912ec66.svg",
     "fonts/fontawesome-webfont.674f50d.eot",
     "fonts/fontawesome-webfont.fee66e7.woff",
     "fonts/fontawesome-webfont.af7ae50.woff2",
-    "pages/index.79b9fd1f6b16767bf255.js",
+    "pages/index.b99201b6b67e6bcb1982.js",
     "layouts/default.33404067d74b6c2a0344.js",
     "common.dab304d7bb015a8c3247.js",
-    "app.b2870b04705fc02ade8a.js",
+    "app.d52e1f06054cdf69ff29.js",
     "fonts/fontawesome-webfont.b06871f.ttf",
     "LICENSES",
-    "pages/index.79b9fd1f6b16767bf255.js.map",
+    "pages/index.b99201b6b67e6bcb1982.js.map",
     "layouts/default.33404067d74b6c2a0344.js.map",
     "common.dab304d7bb015a8c3247.js.map",
-    "app.b2870b04705fc02ade8a.js.map",
-    "manifest.adf0352acffbf72d669c.js.map",
+    "app.d52e1f06054cdf69ff29.js.map",
+    "manifest.4c0dfa504e8f79fff364.js.map",
     "index.spa.html",
     "index.ssr.html"
   ],
   "initial": [
-    "manifest.adf0352acffbf72d669c.js",
+    "manifest.4c0dfa504e8f79fff364.js",
     "common.dab304d7bb015a8c3247.js",
-    "app.b2870b04705fc02ade8a.js"
+    "app.d52e1f06054cdf69ff29.js"
   ],
   "async": [
-    "pages/index.79b9fd1f6b16767bf255.js",
+    "pages/index.b99201b6b67e6bcb1982.js",
     "layouts/default.33404067d74b6c2a0344.js"
   ],
   "modules": {
@@ -953,6 +953,10 @@
       2,
       3,
       4
+    ],
+    "7096e028": [
+      5,
+      11
     ],
     "3740018c": [
       7,
@@ -2106,10 +2110,6 @@
       3,
       4
     ],
-    "5929dcee": [
-      5,
-      11
-    ],
     "5b483b03": [
       7,
       13,
@@ -2458,6 +2458,10 @@
       8,
       14
     ],
+    "3ae885f3": [
+      5,
+      11
+    ],
     "7d32f424": [
       7,
       13,
@@ -2509,6 +2513,30 @@
       4
     ],
     "aed930da": [
+      7,
+      13,
+      1,
+      9,
+      2,
+      2,
+      3,
+      4
+    ],
+    "b1e4e312": [
+      5,
+      11
+    ],
+    "7bb51c6c": [
+      7,
+      13,
+      1,
+      9,
+      2,
+      2,
+      3,
+      4
+    ],
+    "629e580d": [
       7,
       13,
       1,
@@ -2579,20 +2607,6 @@
       4
     ],
     "99a7a152": [
-      7,
-      13,
-      1,
-      9,
-      2,
-      2,
-      3,
-      4
-    ],
-    "35d9a127": [
-      5,
-      11
-    ],
-    "629e580d": [
       7,
       13,
       1,
@@ -2673,6 +2687,10 @@
       2,
       3,
       4
+    ],
+    "35d9a127": [
+      5,
+      11
     ],
     "21864bbe": [
       7,
@@ -3207,16 +3225,6 @@
       4
     ],
     "005179d4": [
-      7,
-      13,
-      1,
-      9,
-      2,
-      2,
-      3,
-      4
-    ],
-    "7bb51c6c": [
       7,
       13,
       1,
