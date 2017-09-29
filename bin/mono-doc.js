@@ -1,38 +1,31 @@
 #!/usr/bin/env node
+'use strict'
 
-const program = require('commander')
-const { join } = require('path')
-const { Nuxt, Builder } = require('nuxt')
-const config = require('../nuxt.config.js')
-const { version } = require('../package')
+const updateNotifier = require('update-notifier')
+const pkg = require('../package.json')
 
-program
-  .version(version)
-  .arguments('<url>')
-  .option('-p, --port', 'Port to listen')
-  .option('-H, --host', 'Host to listen')
-  .option('--dev', 'Dev mode')
-  .action(function (url, options) {
-    config.rootDir = join(__dirname, '..')
-    config.dev = !!options.dev
-    config.env.url = url
-    config.axios.baseURL = url
-    config.axios.browserBaseURL = url
-    config.build.extend = () => {}
+updateNotifier({ pkg }).notify()
 
-    const nuxt = new Nuxt(config)
-    const builder = new Builder(nuxt)
-    const port = options.port || process.env.PORT || 3000
-    const host = options.host || process.env.HOST || 'localhost'
-
-    builder.build()
-      .then(() => {
-        nuxt.listen(port, host)
-      })
-      .catch((err) => {
-        console.error(err) // eslint-disable-line no-console
-        process.exit(1)
-      })
+require('sywac')
+  .help('-h, --help')
+  .version('-v, --version')
+  .number('--port <port>', { desc: 'Port' })
+  .string('--host <host>', { desc: 'Host' })
+  .command('dev [url]', {
+    desc: 'Run mono-doc with api [url] and watch for changes',
+    paramsDesc: ['API Url, default: http://localhost:8000'],
+    run: (argv) => {
+      argv.url = argv.url || 'http://localhost:8000'
+      require('./cmds/dev')(argv)
+    }
   })
-
-program.parse(process.argv)
+  .command('start [url]', {
+    aliases: '*',
+    desc: 'Run mono-doc with api [url]',
+    paramsDesc: ['API Url, default: http://localhost:8000'],
+    run: (argv) => {
+      argv.url = argv.url || 'http://localhost:8000'
+      require('./cmds/start')(argv)
+    }
+  })
+  .parseAndExit()
