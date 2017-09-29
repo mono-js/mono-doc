@@ -59,23 +59,9 @@ export default {
       menuOpen: false
     }
   },
-  async asyncData({ app, env, error }) {
-    let routes
-
-    try {
-      routes = await app.$axios.$get('/_routes')
-    } catch (e) {
-      error({ statusCode: 404, message: 'The url you provided is not a Mono API!' })
-    }
-
-    return {
-      url: env.url,
-      routes
-    }
-  },
   computed: {
     processedRoutes() {
-      const routes = _.map(this.routes, (route) => {
+      const routes = _.map(this.$store.state.routes, (route) => {
         const paths = route.path.split('/').slice(1)
         const bodyParams = route.validation && route.validation.body ? _(route.validation.body.properties).mapValues((value, key) => {
           const required = route.validation.body.required ? !!route.validation.body.required.indexOf(key) !== -1 : false
