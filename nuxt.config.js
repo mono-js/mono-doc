@@ -37,19 +37,12 @@ module.exports = {
   ** Plugins
   */
   plugins: [
-    '~/plugins/highlight',
+    { src: '~/plugins/highlight', ssr: false },
     { src: '~/plugins/scrollspy', ssr: false }
   ],
   /*
-  ** Env
+  ** Router config
   */
-  env: {
-  },
-  /*
-  ** Server middleware
-  */
-  serverMiddleware: [
-  ],
   router: {
     scrollBehavior: () => false
   },
@@ -57,11 +50,6 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    plugins: [
-    ],
-    babel: {
-      // plugins: ['lodash']
-    },
     /*
     ** Run ESLINT on save
     */
