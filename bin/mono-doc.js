@@ -11,21 +11,10 @@ require('sywac')
   .version('-v, --version')
   .number('--port <port>', { desc: 'Port' })
   .string('--host <host>', { desc: 'Host' })
-  .command('dev [url]', {
-    desc: 'Run mono-doc with api [url] and watch for changes',
-    paramsDesc: ['API Url, default: http://localhost:8000'],
-    run: (argv) => {
-      argv.url = argv.url || 'http://localhost:8000'
-      require('./cmds/dev')(argv)
-    }
-  })
   .command('start [url]', {
     aliases: '*',
     desc: 'Run mono-doc with api [url]',
     paramsDesc: ['API Url, default: http://localhost:8000'],
-    run: (argv) => {
-      argv.url = argv.url || 'http://localhost:8000'
-      require('./cmds/start')(argv)
-    }
+    run: require('./cmds/start')
   })
   .parseAndExit()
