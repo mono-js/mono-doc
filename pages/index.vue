@@ -77,12 +77,12 @@ export default {
     processedRoutes() {
       const routes = _.map(this.routes, (route) => {
         const paths = route.path.split('/').slice(1)
-        const bodyParams = route.validate && route.validate.body ? _(route.validate.body.properties).mapValues((value, key) => {
-          const required = !!route.validate.body.required.indexOf(key) !== -1
+        const bodyParams = route.validation && route.validation.body ? _(route.validation.body.properties).mapValues((value, key) => {
+          const required = route.validation.body.required ? !!route.validation.body.required.indexOf(key) !== -1 : false
           return _.merge({}, value, { key, required })
         }).values().value() : []
-        const queryParams = route.validate && route.validate.query ? _(route.validate.query.properties).mapValues((value, key) => {
-          const required = !!route.validate.query.required.indexOf(key) !== -1
+        const queryParams = route.validation && route.validation.query ? _(route.validation.query.properties).mapValues((value, key) => {
+          const required = route.validation.query.required ? !!route.validation.query.required.indexOf(key) !== -1 : false
           return _.merge({}, value, { key, required })
         }).values().value() : []
         const urlParams = paths.filter((path) => path[0] === ':')
