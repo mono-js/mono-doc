@@ -39,7 +39,7 @@ module.exports = {
   */
   plugins: [
     '~/plugins/highlight',
-    '~/plugins/scrollspy'
+    { src: '~/plugins/scrollspy', ssr: false }
   ],
   /*
   ** Env
