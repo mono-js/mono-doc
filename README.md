@@ -16,6 +16,22 @@ Start documentation server on http://localhost:3000 for `<api-url>`:
 mono-doc <api-url>
 ```
 
+Help:
+
+```console
+$ mono-doc --help
+Usage: mono-doc <command> <args> [options]
+
+Commands:
+  start [url]  Run mono-doc with api [url]                                                 [default]
+
+Options:
+  -h, --help     Show help                                                [commands: help] [boolean]
+  -v, --version  Show version number                                   [commands: version] [boolean]
+  --port <port>  Port                                                                       [number]
+  --host <host>  Host                                                                       [string]
+```
+
 ## Routes
 
 Mono Doc ses the definition of your Mono routes to generate the doc.
