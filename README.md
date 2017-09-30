@@ -4,7 +4,7 @@
 
 ## Installation
 
-``` bash
+```bash
 npm install -g mono-doc
 ```
 
@@ -15,6 +15,30 @@ Start documentation server on http://localhost:3000 for `<api-url>`:
 ```bash
 mono-doc <api-url>
 ```
+
+## Deployment
+
+You can install it locally:
+
+```bash
+npm install --save mono-doc
+```
+
+Add a start script that launches `mono-doc` inside your `package.json`:
+
+```json
+{
+  "name": "my-doc",
+  "scripts": {
+    "start": "mono-doc"
+  },
+  "dependencies": {
+    "@terrajs/mono-doc": "^0.5.4"
+  }
+}
+```
+
+Deploy it and enjoy !
 
 ## Credits
 
