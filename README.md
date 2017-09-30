@@ -10,11 +10,13 @@ npm install -g mono-doc
 
 ## Usage
 
-Start documentation server on http://localhost:3000 for `<api-url>`:
+Start documentation server on http://localhost:3000 for `url`:
 
 ```bash
-mono-doc <api-url>
+mono-doc [url]
 ```
+
+If no `url` is provided, `http://localhost:8000` will be used as default.
 
 Help:
 
