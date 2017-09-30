@@ -16,6 +16,32 @@ Start documentation server on http://localhost:3000 for `<api-url>`:
 mono-doc <api-url>
 ```
 
+## Routes
+
+Mono Doc ses the definition of your Mono routes to generate the doc.
+
+You can override it with the `documentation` key inside Mono routes:
+
+```js
+module.exports = [
+  {
+    method: 'GET',
+    path: 'my-route',
+    // displays query and body params
+    validation: {
+      query: ...,
+      body: ...
+    },
+    handler: ...,
+    // override default generated doc
+    documentation: {
+      name: 'This is my route',
+      description: 'My route is doing a great job'
+    }
+  }
+]
+```
+
 ## Deployment
 
 You can install it locally:
