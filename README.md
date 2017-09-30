@@ -1,4 +1,4 @@
-<h1 align="center"><img src="https://user-images.githubusercontent.com/904724/30934972-81afdcea-a3cf-11e7-9bda-000c1b1832c0.png" width="350" alt="Mono Doc"/></h1>
+<h1 align="center"><img src="https://user-images.githubusercontent.com/904724/31045465-fb13c3f0-a5e4-11e7-8893-6044908700bb.png" width="350" alt="Mono Doc"/></h1>
 
 > Documentation generator for [Mono](https://github.com/terrajs/mono) projects
 
