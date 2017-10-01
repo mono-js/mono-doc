@@ -29,6 +29,9 @@
       </ul>
       <ul class="toc-footer">
         <li>
+          <a href="https://github.com/lord/slate">Inspired by Slate</a>
+        </li>
+        <li>
           <a href="https://github.com/terrajs/mono-doc">Documentation Powered by Mono Doc</a>
         </li>
       </ul>
