@@ -2,6 +2,9 @@
 
 > Documentation generator for [Mono](https://github.com/terrajs/mono) projects
 
+[![npm version](https://img.shields.io/npm/v/mono-doc.svg)](https://www.npmjs.com/package/mono-doc)
+[![license](https://img.shields.io/github/license/terrajs/mono-doc.svg)](https://github.com/terrajs/mono-doc/blob/master/LICENSE)
+
 ## Installation
 
 ```bash
@@ -77,7 +80,7 @@ Add a start script that launches `mono-doc` inside your `package.json`:
     "start": "mono-doc"
   },
   "dependencies": {
-    "@terrajs/mono-doc": "^0.5.4"
+    "mono-doc": "latest"
   }
 }
 ```
@@ -85,5 +88,7 @@ Add a start script that launches `mono-doc` inside your `package.json`:
 Deploy it and enjoy !
 
 ## Credits
+
+mono-doc uses [Nuxt.js](https://nuxtjs.org/) to generate the documentation.
 
 Logo created by Frederick Allen from the Noun Project.
