@@ -1,135 +1,142 @@
 import Axios from 'axios'
-import Vue from 'vue'
 
-// We cannot extend Axios.prototype
-const axiosExtraProto = {}
 
-// Sets a common header
-axiosExtraProto.setHeader = function setHeader (name, value, scopes = 'common') {
-  if(!Array.isArray(scopes)) {
-    scopes = [scopes]
-  }
-  scopes.forEach(scope => {
-    if (!value) {
-      delete this.defaults.headers[scope][name];
-      return
+// Axios.prototype cannot be modified
+const axiosExtra = {
+  setHeader (name, value, scopes = 'common') {
+    for (let scope of Array.isArray(scopes) ? scopes : [ scopes ]) {
+      if (!value) {
+        delete this.defaults.headers[scope][name];
+        return
+      }
+      this.defaults.headers[scope][name] = value
     }
-    this.defaults.headers[scope][name] = value
-  })
-}
-
-// Set requests token
-axiosExtraProto.setToken = function setToken (token, type, scopes = 'common') {
+  },
+  setToken (token, type, scopes = 'common') {
     const value = !token ? null : (type ? type + ' ' : '') + token
     this.setHeader('Authorization', value, scopes)
+  },
+  onRequest(fn) {
+    this.interceptors.request.use(config => fn(config) || config)
+  },
+  onResponse(fn) {
+    this.interceptors.response.use(response => fn(response) || response)
+  },
+  onRequestError(fn) {
+    this.interceptors.request.use(undefined, error => fn(error) || Promise.reject(error))
+  },
+  onResponseError(fn) {
+    this.interceptors.response.use(undefined, error => fn(error) || Promise.reject(error))
+  },
+  onError(fn) {
+    this.onRequestError(fn)
+    this.onResponseError(fn)
+  }
 }
 
-// Request helpers
-const reqMethods = [
-    'request', 'delete', 'get', 'head', 'options', // url, config
-    'post', 'put', 'patch' // url, data, config
-]
-reqMethods.forEach(method => {
-  axiosExtraProto['$' + method] = function () {
-    return this[method].apply(this, arguments).then(res => res && res.data)
-  }
-})
+// Request helpers ($get, $post, ...)
+for (let method of ['request', 'delete', 'get', 'head', 'options', 'post', 'put', 'patch']) {
+  axiosExtra['$' + method] = function () { return this[method].apply(this, arguments).then(res => res && res.data) }
+}
 
-// Setup all helpers to axios instance (Axios.prototype cannot be modified)
-function setupHelpers( axios ) {
-  for (let key in axiosExtraProto) {
-    axios[key] = axiosExtraProto[key].bind(axios)
+const extendAxiosInstance = axios => {
+  for (let key in axiosExtra) {
+    axios[key] = axiosExtra[key].bind(axios)
   }
 }
 
-const redirectError = {}
 
-// Set appreciate `statusCode` and `message` to error instance
-function errorHandler(error, ctx) {
-  if (error.response) {
-    // Error from backend (non 2xx status code)
-    // ...Auto redirect on special status codes
-    if (redirectError[error.response.status]) {
-      ctx.redirect(redirectError[error.response.status])
+
+
+
+
+const setupProgress = (axios, ctx) => {
+  if (process.server) {
+    return
+  }
+
+  // A noop loading inteterface for when $nuxt is not yet ready
+  const noopLoading = {
+    finish: () => { },
+    start: () => { },
+    fail: () => { },
+    set: () => { }
+  }
+
+  const $loading = () => (window.$nuxt && window.$nuxt.$loading && window.$nuxt.$loading.set) ? window.$nuxt.$loading : noopLoading
+
+  let currentRequests = 0
+
+  axios.onRequest(() => {
+    currentRequests++
+  })
+
+  axios.onResponse(() => {
+    currentRequests--
+    if (currentRequests <= 0) {
+      currentRequests = 0
+      $loading().finish()
     }
-    error.statusCode = error.statusCode || parseInt(error.response.status) || 500
-    error.message = error.message || error.response.statusText || (error.statusCode + ' (Internal Server Error)')
-  } else if (error.request) {
-    // Error while making request
-    error.statusCode = error.statusCode || 500
-    error.message = error.message || 'request error'
-  } else {
-    // Something happened in setting up the request that triggered an Error
-    error.statusCode = error.statusCode || 0
-    error.message = error.message || 'axios error'
+  })
+
+  axios.onError(() => {
+    currentRequests--
+    $loading().fail()
+    $loading().finish()
+  })
+
+  const onProgress = e => {
+    const progress = ((e.loaded * 100) / (e.total * currentRequests))
+    $loading().set(progress)
   }
 
-  return Promise.reject(error)
+  axios.defaults.onUploadProgress = onProgress
+  axios.defaults.onDownloadProgress = onProgress
 }
-
-
-
-
-
-// Setup BaseURL
-const baseURL = process.browser
-  ? (process.env.API_URL_BROWSER || '/api')
-  : (process.env.API_URL || 'http://localhost:3000/api')
-
-// Custom init hook
-
 
 export default (ctx, inject) => {
-  const { app, store, req } = ctx
+  const axiosOptions = {
+    // baseURL
+    baseURL : process.browser
+      ? 'http://localhost:3000/'
+      : (process.env._AXIOS_BASE_URL_ || 'http://localhost:3000/'),
 
-  // Create a fresh objects for all default header scopes
-  // Axios creates only one which is shared across SSR requests!
-  // https://github.com/mzabriskie/axios/blob/master/lib/defaults.js
-  const headers = {
-    common : {
-      'Accept': 'application/json, text/plain, */*'
-    },
-    delete: {},
-    get: {},
-    head: {},
-    post: {},
-    put: {},
-    patch: {}
+    // Create fresh objects for all default header scopes
+    // Axios creates only one which is shared across SSR requests!
+    // https://github.com/mzabriskie/axios/blob/master/lib/defaults.js
+    headers: {
+      common : {
+        'Accept': 'application/json, text/plain, */*'
+      },
+      delete: {},
+      get: {},
+      head: {},
+      post: {},
+      put: {},
+      patch: {}
+    }
   }
 
   
-  // Default headers
-  headers.common = (req && req.headers) ? Object.assign({}, req.headers) : {}
-  delete headers.common['accept']
-  delete headers.common['host']
+  // Proxy SSR request headers headers
+  axiosOptions.headers.common = (ctx.req && ctx.req.headers) ? Object.assign({}, ctx.req.headers) : {}
+  delete axiosOptions.headers.common['accept']
+  delete axiosOptions.headers.common['host']
   
 
   // Create new axios instance
-  const axios = Axios.create({
-    baseURL,
-    headers
-  })
+  const axios = Axios.create(axiosOptions)
 
-  
+  // Extend axios proto
+  extendAxiosInstance(axios)
 
-  
-
-  
-
+  // Setup interceptors
   
   
-  // Error handler
-  axios.interceptors.response.use(undefined, err => errorHandler(err, ctx));
-
+  setupProgress(axios, ctx) 
   
 
   // Inject axios to the context as $axios
   ctx.$axios = axios
   inject('axios', axios)
-
-  
-
-
-  // Setup axios helpers
-  setupHelpers(axios)
 }

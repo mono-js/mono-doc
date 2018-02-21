@@ -24,6 +24,8 @@ export function createRouter () {
 			name: "index"
 		}
     ],
+    
+    
     fallback: false
   })
 }

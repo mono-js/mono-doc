@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 // Recursive find files in {srcDir}/store
-const files = require.context('@/store', true, /^\.\/.*\.(js|ts)$/)
+const files = require.context('@/store', true, /^\.\/(?!-).*\.(js)$/)
 const filenames = files.keys()
 
 // Store
@@ -30,7 +30,7 @@ if (typeof storeData !== 'function') {
   }
 
   for (let filename of filenames) {
-    let name = filename.replace(/^\.\//, '').replace(/\.(js|ts)$/, '')
+    let name = filename.replace(/^\.\//, '').replace(/\.(js)$/, '')
     if (name === 'index') continue
 
     let namePath = name.split(/\//)
