@@ -100,8 +100,8 @@ export default (ctx, inject) => {
   
   // Default headers
   headers.common = (req && req.headers) ? Object.assign({}, req.headers) : {}
-  delete headers.common.host
-  delete headers.common.accept
+  delete headers.common['accept']
+  delete headers.common['host']
   
 
   // Create new axios instance
