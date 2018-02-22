@@ -15,7 +15,7 @@
         <input type="text" placeholder="Search" v-model="search" @change="updateScroll" autofocus>
       </div>
       <ul id="toc" class="toc-list-h1">
-        <li v-for="(routes, name, index) in processedRoutes" :key="name">
+        <li v-for="(routes, name) in processedRoutes" :key="name">
           <a :href="`#${name}`" class="toc-h1 toc-link" :class="{ active: $store.state.scroll === name }" @click="$store.dispatch('updateScroll', name)">{{name.replace('-', ' / ')}}</a>
           <ul class="toc-list-h2" v-show="$store.state.scroll === name || routes.findIndex((route) => route.key === $store.state.scroll) >= 0">
             <li v-for="route in routes" :key="route.key">
