@@ -1,6 +1,6 @@
 {
   "name": "mono-doc",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "API Documentation module for Mono",
   "main": "lib/",
   "scripts": {
