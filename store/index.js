@@ -29,7 +29,7 @@ export const actions = {
   updateScroll({ commit }, scroll) {
     commit('UPDATE_SCROLL', scroll)
   },
-  async nuxtServerInit({ commit }, { req }) {
-    commit('SET_ROUTES', req.routes || [])
+  nuxtServerInit({ commit }, { req }) {
+    commit('SET_ROUTES', req.routes)
   }
 }
