@@ -17,7 +17,6 @@ module.exports = {
   ** Modules
   */
   modules: [
-    '@nuxtjs/axios',
     '@nuxtjs/font-awesome'
   ],
   /*

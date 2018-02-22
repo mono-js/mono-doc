@@ -1,4 +1,5 @@
 export const state = () => ({
+  env: 'development',
   language: 'javascript',
   scroll: '',
   routes: []

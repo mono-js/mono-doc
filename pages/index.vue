@@ -29,6 +29,9 @@
       </ul>
       <ul class="toc-footer">
         <li>
+          Version {{version}}
+        </li>
+        <li>
           <a href="https://github.com/lord/slate">Inspired by Slate</a>
         </li>
         <li>
@@ -53,6 +56,8 @@
 
 <script>
 import _ from 'lodash'
+import { mapState } from 'vuex'
+
 import routes from '../components/routes'
 
 export default {
@@ -63,6 +68,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['env']),
     processedRoutes() {
       const routes = _.map(this.$store.state.routes, (route) => {
         const paths = route.path.split('/').slice(1)
