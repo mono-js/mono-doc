@@ -1,7 +1,8 @@
 export const state = () => ({
-  env: 'development',
   language: 'javascript',
   scroll: '',
+  env: 'development',
+  version: '',
   routes: []
 })
 
@@ -14,6 +15,12 @@ export const mutations = {
   },
   UPDATE_SCROLL: (state, scroll) => {
     state.scroll = scroll
+  },
+  SET_ENV: (state, env) => {
+    state.env = env
+  },
+  SET_VERSION: (state, version) => {
+    state.version = version
   },
   SET_ROUTES: (state, routes) => {
     state.routes = routes
@@ -31,6 +38,10 @@ export const actions = {
     commit('UPDATE_SCROLL', scroll)
   },
   nuxtServerInit({ commit }, { req }) {
-    commit('SET_ROUTES', req.routes)
+    if (!req.mono) return
+
+    commit('SET_ENV', req.mono.env)
+    commit('SET_VERSION', req.mono.version)
+    commit('SET_ROUTES', req.mono.routes)
   }
 }
