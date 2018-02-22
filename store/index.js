@@ -1,9 +1,7 @@
-const { options } = require('nuxt')
-
 export const state = () => ({
   language: 'javascript',
   scroll: '',
-  routes: options.routes
+  routes: []
 })
 
 export const mutations = {
@@ -15,10 +13,10 @@ export const mutations = {
   },
   UPDATE_SCROLL: (state, scroll) => {
     state.scroll = scroll
+  },
+  SET_ROUTES: (state, routes) => {
+    state.routes = routes
   }
-  // SET_ROUTES: (state, routes) => {
-  //   state.routes = routes
-  // }
 }
 
 export const actions = {
@@ -30,8 +28,8 @@ export const actions = {
   },
   updateScroll({ commit }, scroll) {
     commit('UPDATE_SCROLL', scroll)
+  },
+  async nuxtServerInit({ commit }, { req }) {
+    commit('SET_ROUTES', req.routes || [])
   }
-  // async nuxtServerInit({ state, commit }, { app, error }) {
-  //   commit('SET_ROUTES', routes)
-  // }
 }
