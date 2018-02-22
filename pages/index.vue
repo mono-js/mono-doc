@@ -68,7 +68,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['env']),
+    ...mapState(['version']),
     processedRoutes() {
       const routes = _.map(this.$store.state.routes, (route) => {
         const paths = route.path.split('/').slice(1)
