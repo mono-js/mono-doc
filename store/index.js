@@ -37,11 +37,11 @@ export const actions = {
   updateScroll({ commit }, scroll) {
     commit('UPDATE_SCROLL', scroll)
   },
-  nuxtServerInit({ commit }, { req }) {
-    if (!req.mono) return
+  nuxtServerInit({ commit }, context) {
+    const mono = context.req ? context.req.mono : context.payload.mono
 
-    commit('SET_ENV', req.mono.env)
-    commit('SET_VERSION', req.mono.version)
-    commit('SET_ROUTES', req.mono.routes)
+    commit('SET_ENV', mono.env)
+    commit('SET_VERSION', mono.version)
+    commit('SET_ROUTES', mono.routes)
   }
 }
