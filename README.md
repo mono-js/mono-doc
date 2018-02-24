@@ -33,7 +33,7 @@ Mono Doc will use the `doc` property of your configuration (example: `conf/devel
 module.exports = {
   mono: {
     doc: {
-      baseUrl: '/_doc', // default: '/'
+      baseUrl: '/documentation', // default: '/'
       // Use nuxt.generate()
       static: true, // default: false
       staticPath: '...' // default: 'docs'
