@@ -7,7 +7,7 @@
 [![Coverage](https://img.shields.io/codecov/c/github/terrajs/mono-doc/master.svg)](https://codecov.io/gh/terrajs/mono-doc.js)
 [![license](https://img.shields.io/github/license/terrajs/mono-doc.svg)](https://github.com/terrajs/mono-doc/blob/master/LICENSE)
 
-Mono Doc generates your Mono REST API documentation on the '/' route.
+Mono Doc generates your Mono REST API documentation.
 
 ## Installation
 
@@ -70,6 +70,6 @@ module.exports = [
 
 ## Credits
 
-mono-doc uses [Nuxt.js](https://nuxtjs.org/) to generate the documentation.
+mono-doc uses [Nuxt.js](https://nuxtjs.org) to generate the documentation.
 
 Logo created by Frederick Allen from the Noun Project.
