@@ -35,15 +35,15 @@
     "vue-highlightjs": "^1.3.3"
   },
   "devDependencies": {
-    "@terrajs/mono": "0.9.1",
-    "cross-env": "5.1.4",
-    "babel-eslint": "8.2.2",
-    "babel-plugin-lodash": "3.3.2",
-    "eslint": "4.18.2",
-    "eslint-loader": "2.0.0",
-    "eslint-plugin-vue": "4.3.0",
-    "node-sass": "4.8.1",
-    "sass-loader": "6.0.7"
+    "mono-core": "1.0.0",
+    "cross-env": "5.2.0",
+    "babel-eslint": "8.2.6",
+    "babel-plugin-lodash": "3.3.4",
+    "eslint": "5.4.0",
+    "eslint-loader": "2.1.0",
+    "eslint-plugin-vue": "4.7.1",
+    "node-sass": "4.9.3",
+    "sass-loader": "7.1.0"
   },
   "keywords": [
     "mono",
